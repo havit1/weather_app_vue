@@ -1,13 +1,22 @@
 <template>
   <div>
     <div>City Weather</div>
-    <h1>{{id}}</h1>
+    <h1>{{ name }}</h1>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
-  data() {},
-  props: { id: Number }
+  props: { name: String },
+  computed: mapGetters(["weatherData, searchData"]),
+  watch: {},
+  async mounted() {
+    this.setSearch(this.name);
+    this.fetchWeather(this.searchData);
+  },
+  methods: {
+    ...mapActions(["fetchWeather", "setSearch"]),
+  },
 };
 </script>

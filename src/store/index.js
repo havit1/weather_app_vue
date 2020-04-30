@@ -1,12 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import search from "./modules/search";
+import cityWeather from "./modules/cityWeather";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     search,
+    cityWeather,
   },
 });
 

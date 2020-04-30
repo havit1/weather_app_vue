@@ -16,7 +16,7 @@ const routes = [
     component: () => import("../views/About.vue"),
   },
   {
-    path: "/weather/:id",
+    path: "/weather/:name",
     name: "Weather",
     component: () => import("../views/CityPage.vue"),
     props: true,

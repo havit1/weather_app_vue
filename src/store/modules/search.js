@@ -9,12 +9,15 @@ export default {
   },
   actions: {
     setSearch({ commit }, newString) {
-      console.log(newString.split(","));
-      //   const searchData = {
-      //     city: newString.split(",")[0].trim(),
-      //     country: newString.split(",")[1].trim(),
-      //   };
-      //   commit("updateSearchString", searchData);
+      const searchData =
+        newString.split(",").length === 2
+          ? {
+              city: newString.split(",")[0].trim(),
+              country: newString.split(",")[1].trim(),
+            }
+          : newString;
+      console.log(searchData);
+      commit("updateSearchString", searchData);
     },
   },
   getters: {
