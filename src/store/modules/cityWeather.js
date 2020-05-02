@@ -13,6 +13,7 @@ export default {
       state.loading = true;
     },
     fetchSuccessFinish(state, weatherData) {
+      state.weatherData = weatherData;
       state.loading = false;
     },
     fetchFinishError(state, errorMsg) {
@@ -23,7 +24,6 @@ export default {
     async fetchWeather({ commit }, cityData) {
       commit("fetchStart");
       try {
-        console.log(cityData);
         const { data } = await axios.get(
           `${API_URL}${cityData.city},${cityData.country}&appid=${API_KEY}`
         );
