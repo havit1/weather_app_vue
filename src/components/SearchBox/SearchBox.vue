@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="search-box">
     <input
+      class="search-box__input"
       @keypress="submitSearch"
       v-model="searchString"
       type="text"
@@ -19,7 +20,7 @@ export default {
   watch: {
     searchString(value) {
       this.setSearch(value);
-    },
+    }
   },
 
   methods: {
@@ -33,7 +34,11 @@ export default {
           `/weather/${this.searchData.city},${this.searchData.country}`
         );
       }
-    },
-  },
+    }
+  }
 };
 </script>
+
+<style lang="scss" scoped>
+@import "./SearchBox.style.scss";
+</style>

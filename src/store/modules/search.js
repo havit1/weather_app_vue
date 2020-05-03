@@ -16,7 +16,6 @@ export default {
               country: newString.split(",")[1].trim(),
             }
           : newString;
-      console.log(searchData);
       commit("updateSearchString", searchData);
     },
   },

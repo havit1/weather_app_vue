@@ -11,13 +11,15 @@ export default {
   mutations: {
     fetchStart(state) {
       state.loading = true;
+      state.errorMessage = "";
     },
     fetchSuccessFinish(state, weatherData) {
       state.weatherData = weatherData;
       state.loading = false;
     },
     fetchFinishError(state, errorMsg) {
-      (state.loading = false), (state.errorMessage = errorMsg);
+      state.loading = false;
+      state.errorMessage = errorMsg;
     },
   },
   actions: {
@@ -25,7 +27,7 @@ export default {
       commit("fetchStart");
       try {
         const { data } = await axios.get(
-          `${API_URL}${cityData.city},${cityData.country}&appid=${API_KEY}`
+          `${API_URL}${cityData.city},${cityData.country}&units=metric&appid=${API_KEY}`
         );
         commit("fetchSuccessFinish", data);
       } catch (error) {
@@ -35,11 +37,11 @@ export default {
     },
   },
   getters: {
-    weatherData(state) {
+    weatherData({ loading, weatherData, errorMessage }) {
       return {
-        ...state.weatherData,
-        loading: state.loading,
-        errorMessage: state.errorMessage,
+        weatherData,
+        loading,
+        errorMessage,
       };
     },
   },
